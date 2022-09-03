@@ -1,0 +1,12 @@
+C:\Users\dusag\Desktop\App de Pruebas\Pruebas\Persistencia\bin\Debug\netstandard2.1\Persistencia.deps.json
+C:\Users\dusag\Desktop\App de Pruebas\Pruebas\Persistencia\bin\Debug\netstandard2.1\Persistencia.dll
+C:\Users\dusag\Desktop\App de Pruebas\Pruebas\Persistencia\bin\Debug\netstandard2.1\Persistencia.pdb
+C:\Users\dusag\Desktop\App de Pruebas\Pruebas\Persistencia\obj\Debug\netstandard2.1\Persistencia.csprojAssemblyReference.cache
+C:\Users\dusag\Desktop\App de Pruebas\Pruebas\Persistencia\obj\Debug\netstandard2.1\Persistencia.AssemblyInfoInputs.cache
+C:\Users\dusag\Desktop\App de Pruebas\Pruebas\Persistencia\obj\Debug\netstandard2.1\Persistencia.AssemblyInfo.cs
+C:\Users\dusag\Desktop\App de Pruebas\Pruebas\Persistencia\obj\Debug\netstandard2.1\Persistencia.csproj.CoreCompileInputs.cache
+C:\Users\dusag\Desktop\App de Pruebas\Pruebas\Persistencia\obj\Debug\netstandard2.1\Persistencia.dll
+C:\Users\dusag\Desktop\App de Pruebas\Pruebas\Persistencia\obj\Debug\netstandard2.1\Persistencia.pdb
+C:\Users\dusag\Desktop\App de Pruebas\Pruebas\Persistencia\bin\Debug\netstandard2.1\Dominio.dll
+C:\Users\dusag\Desktop\App de Pruebas\Pruebas\Persistencia\bin\Debug\netstandard2.1\Dominio.pdb
+C:\Users\dusag\Desktop\App de Pruebas\Pruebas\Persistencia\obj\Debug\netstandard2.1\Persistencia.csproj.CopyComplete

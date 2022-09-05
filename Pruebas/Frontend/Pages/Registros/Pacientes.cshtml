@@ -1,0 +1,114 @@
+@page
+@using System.Security.Principal
+@model Frontend.Pages.Registros.Pacientes
+
+@{
+    ViewData["Title"] = "Pacientes";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Pacientes</title>
+    <style>
+        input{
+        alignment: right;
+        }
+        label{
+        alignment: left;
+        }
+    </style>
+</head>
+<body>
+<section style="float: left;width: 35%">
+    <h3>Registro de Pacientes</h3>
+    <form method="post">
+        <label for="genere">Genero: </label>
+        <input type="radio" id="male" name="genere" value="0">
+        <label for="male">Masculino </label>
+        <input type="radio" id="female" name="genere" value="1">
+        <label for="female">Femenino </label><br>
+
+        <label for="names">Nombres*: </label>
+        <input type="text" id="names" name="names"><br>
+
+        <label for="lastnames">Apellidos*: </label>
+        <input type="text" id="lastnames" name="lastnames"><br>
+
+        <label for="document">Documento*: </label>
+        <input type="text" id="document" name="document"><br>
+
+        <label for="phone">Telefono*: </label>
+        <input type="text" id="phone" name="phone"><br>
+
+        <label for="address">Direccion*: </label>
+        <input type="text" id="address" name="address"><br>
+
+        <label for="latitude">Latitud: </label>
+        <input type="text" id="latitude" name="latitude" value="0"><br>
+
+        <label for="longitude">Longitud: </label>
+        <input type="text" id="longitude" name="longitude" value="0"><br>
+
+        <label for="city">Ciudad*: </label>
+        <input type="text" id="city" name="city"><br>
+
+        <label for="birthday">Fecha de Nacimiento: </label>
+        <input type="date" id="birthday" name="birthday" min="1900-01-01" max=@Model.fechahoy><br>
+
+        <input type="submit" value="Registrar"><br><br><br>
+    </form>
+    @{
+        switch (Model.mensaje)
+        {
+            case 1:
+                <script>
+                    window.alert("Longitudo, Latitud y/o Fecha de nacimiento invalida")
+                </script>
+                Model.mensaje = 0;
+                break;
+
+            case 2:
+                <script>
+                    window.alert("No puede dejar vacios campos obligatorios*")
+                </script>
+                Model.mensaje = 0;
+                break;
+
+            case 3:
+                <script>
+                    window.alert("Paciente registrado con exito!")
+                </script>
+                Model.mensaje = 0;
+                break;
+
+            default:
+                Model.mensaje = 0;
+                break;
+        }
+    }
+
+</section>
+<aside style="float: left;width: 65%">
+    <h3>Lista de Pacientes</h3>
+    <table class="table">
+        <tr>
+            <th>Nombre</th>
+            <th>Documento</th>
+            <th>Fecha de Nacimiento</th>
+            <th>Direccion</th>
+        </tr>
+        @foreach (var n in Model.ninos)
+        {
+            <tr>
+                <td>@n.Nombre @n.Apellido</td>
+                <td>@n.Documento</td>
+                <td>@n.Nacimiento.ToString("dd/MM/yyyy")</td>
+                <td>@n.Direccion</td>
+            </tr>
+        }
+    </table>
+</aside>
+</body>
+</html>

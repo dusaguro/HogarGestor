@@ -7,6 +7,7 @@ namespace Consola
     class Program
     {
         private static IRepositorioFamiliares _familiares = new RepositorioFamiliares(new AppDbContext());
+        //private static string fechahoy;
         static void Main(string[] args)
         {
             
@@ -37,8 +38,24 @@ namespace Consola
             _familiares.UpdateFamiliar(tio);*/
             
             
-            var tio = _familiares.GetFamiliar(1);
-            Console.WriteLine("Familiar: " + tio.Nombre + " " + tio.Apellido);
+            /*var tio = _familiares.GetFamiliar(1);
+            Console.WriteLine("Familiar: " + tio.Nombre + " " + tio.Apellido);*/
+            /*var today = DateTime.Now;
+            var dd = today.Day.ToString();
+            /*if (today.Day<10)
+            {
+                dd = "0" + dd;
+            }#1#
+            Console.WriteLine(dd);
+            var mm = today.Month.ToString();
+            /*if (today.Month<10)
+            {
+                mm = "0" + mm;
+            }#1#
+            Console.WriteLine(mm);
+            var yyyy = today.Year.ToString();
+            Console.WriteLine(yyyy);
+            fechahoy = yyyy + "-" + mm + "-" + dd;*/
         }
         
     }

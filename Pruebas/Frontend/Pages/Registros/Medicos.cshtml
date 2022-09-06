@@ -9,11 +9,95 @@
 
 <html>
 <head>
-    <title></title>
+    <title>Medicos</title>
+    <link rel="stylesheet" href="css/Formularios.css">
 </head>
 <body>
-<div>
+<section style="float: left;width: 35%">
+    <h3 class="display-5">Registro de Medicos</h3>
+    <form method="post">
+        <label for="genere">Genero: </label>
+        <input type="radio" id="male" name="genere" value="0">
+        <label for="male">Masculino </label>
+        <input type="radio" id="female" name="genere" value="1">
+        <label for="female">Femenino </label><br>
     
-</div>
+        <label for="names">Nombres*: </label>
+        <input type="text" id="names" name="names" pattern="[a-zA-Z\s]+"><br>
+        
+        <label for="lastnames">Apellidos*: </label>
+        <input type="text" id="lastnames" name="lastnames" pattern="[a-zA-Z\s]+"><br>
+        
+        <label for="document">Documento*: </label>
+        <input type="text" id="document" name="document" pattern="[0-9]+"><br>
+        
+        <label for="phone">Telefono*: </label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}"><br>
+        <small>(Ejemplo: 3001115588 o 6027223344)</small><br>
+    
+        <label for="code">Codigo*: </label>
+        <input type="text" id="code" name="code"><br>
+        
+        <label for="speciality">Especialidad: </label>
+        <input type="radio" id="pedi" name="speciality" value="0">
+        <label for="male">Pediatra </label>
+        <input type="radio" id="nutri" name="speciality" value="1">
+        <label for="female">Nutricionista </label><br>
+    
+        <label for="rethus">Registro Rethus*: </label>
+        <input type="text" id="rethus" name="rethus" ><br>
+        
+        <input type="submit" value="Registrar"><br><br><br>
+    </form>
+    @{
+            switch (Model.mensaje)
+            {
+                case 1:
+                    <script>
+                        window.alert("Error al agregar al medico")
+                    </script>
+                    Model.mensaje = 0;
+                    break;
+    
+                case 2:
+                    <script>
+                        window.alert("No puede dejar vacios campos obligatorios*")
+                    </script>
+                    Model.mensaje = 0;
+                    break;
+    
+                case 3:
+                    <script>
+                        window.alert("Medico registrado con exito!")
+                    </script>
+                    Model.mensaje = 0;
+                    break;
+    
+                default:
+                    Model.mensaje = 0;
+                    break;
+            }
+        }
+</section>
+<aside style="float: left;width: 65%">
+    <h3 class="display-5">Lista de Medicos</h3>
+        <table class="table">
+            <tr>
+                <th>Nombre</th>
+                <th>Documento</th>
+                <th>Codigo</th>
+                <th>Registro Rethus</th>
+            </tr>
+            @foreach (var n in Model.medicos)
+            {
+                <tr>
+                    <td>@n.Nombre @n.Apellido</td>
+                    <td>@n.Documento</td>
+                    <td>@n.Codigo</td>
+                    <td>@n.RegistroRethus</td>
+                </tr>
+            }
+        </table>
+</aside>
 </body>
 </html>

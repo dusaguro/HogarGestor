@@ -17,4 +17,13 @@
       </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Pages\Imagenes" />
+      <Folder Include="wwwroot\html" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="wwwroot\css\Formularios.css" />
+    </ItemGroup>
+
 </Project>

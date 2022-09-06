@@ -11,18 +11,19 @@
 <html>
 <head>
     <title>Pacientes</title>
+    <link rel="stylesheet" href="css/Formularios.css">
     <style>
-        input{
-        alignment: right;
-        }
-        label{
-        alignment: left;
+        section::after {
+          content: "";
+          display: table;
+          clear: both;
         }
     </style>
 </head>
 <body>
-<section style="float: left;width: 35%">
-    <h3>Registro de Pacientes</h3>
+<section>
+<article style="float: left;width: 35%">
+    <h3 class="display-5">Registro de Pacientes</h3>
     <form method="post">
         <label for="genere">Genero: </label>
         <input type="radio" id="male" name="genere" value="0">
@@ -31,16 +32,17 @@
         <label for="female">Femenino </label><br>
 
         <label for="names">Nombres*: </label>
-        <input type="text" id="names" name="names"><br>
+        <input type="text" id="names" name="names" pattern="[a-zA-Z\s]+"><br>
 
         <label for="lastnames">Apellidos*: </label>
-        <input type="text" id="lastnames" name="lastnames"><br>
+        <input type="text" id="lastnames" name="lastnames" pattern="[a-zA-Z\s]+"><br>
 
         <label for="document">Documento*: </label>
-        <input type="text" id="document" name="document"><br>
+        <input type="text" id="document" name="document" pattern="[0-9]+"><br>
 
         <label for="phone">Telefono*: </label>
-        <input type="text" id="phone" name="phone"><br>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}"><br>
+        <small>(Ejemplo: 3001115588 o 6027223344)</small><br>
 
         <label for="address">Direccion*: </label>
         <input type="text" id="address" name="address"><br>
@@ -52,12 +54,12 @@
         <input type="text" id="longitude" name="longitude" value="0"><br>
 
         <label for="city">Ciudad*: </label>
-        <input type="text" id="city" name="city"><br>
+        <input type="text" id="city" name="city" pattern="[a-zA-Z\s]+"><br>
 
-        <label for="birthday">Fecha de Nacimiento: </label>
+        <label for="birthday">Fecha de Nacimiento*: </label>
         <input type="date" id="birthday" name="birthday" min="1900-01-01" max=@Model.fechahoy><br>
 
-        <input type="submit" value="Registrar"><br><br><br>
+        <input type="submit" id="Registrar" name="Registrar" value="Registrar"><br><br><br>
     </form>
     @{
         switch (Model.mensaje)
@@ -82,16 +84,12 @@
                 </script>
                 Model.mensaje = 0;
                 break;
-
-            default:
-                Model.mensaje = 0;
-                break;
         }
     }
 
-</section>
+</article>
 <aside style="float: left;width: 65%">
-    <h3>Lista de Pacientes</h3>
+    <h3 class="display-5">Lista de Pacientes</h3>
     <table class="table">
         <tr>
             <th>Nombre</th>
@@ -110,5 +108,60 @@
         }
     </table>
 </aside>
+</section>
+<footer>
+    <h3 class="display-5">Consultar Paciente</h3>
+    <form method="post">
+        <label for="iden">Ingrese el id: </label>
+        <input type="text" id="iden" name="iden" pattern="[0-9]+" required>
+        
+        <input type="submit" id="Consultar" name="Consultar" value="Consultar">
+    </form>
+    @if (Model.ninobuscado != null)
+    {
+        <table class="table">
+            <tr>
+                <th>Id:</th><td>@Model.ninobuscado.Id</td>
+            </tr>
+            <tr>
+                <th>Nombres:</th><td>@Model.ninobuscado.Nombre</td>
+            </tr>
+            <tr>
+                <th>Apellidos:</th><td>@Model.ninobuscado.Apellido</td>
+            </tr>
+            <tr>
+                <th>Genero:</th><td>@Model.ninobuscado.Genero</td>
+            </tr>
+            <tr>
+                <th>Telefono:</th><td>@Model.ninobuscado.Telefono</td>
+            </tr>
+            <tr>
+                <th>Fecha de Nacimiento:</th><td>@Model.ninobuscado.Nacimiento.ToString("dd/MM/yyyy")</td>
+            </tr>
+            <tr>
+                <th>Direccion:</th><td>@Model.ninobuscado.Direccion</td>
+            </tr>
+            <tr>
+                <th>Ciudad</th><td>@Model.ninobuscado.Ciudad</td>
+            </tr>
+            <tr>
+                <th>Latitud</th><td>@Model.ninobuscado.Latitud.ToString()</td>
+            </tr>
+            <tr>
+                <th>Longitud</th><td>@Model.ninobuscado.Longitud.ToString()</td>
+            </tr>
+        </table>
+    }
+    else
+    {
+        if (Model.mensaje == 4)
+        {
+            <script>
+                window.alert("Paciente no encontrado")
+            </script>
+            Model.mensaje = 0;
+        }
+    }
+</footer>
 </body>
 </html>

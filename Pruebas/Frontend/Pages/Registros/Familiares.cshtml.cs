@@ -47,6 +47,7 @@ namespace Frontend.Pages.Registros
             catch (Exception e)
             {
                 mensaje = 1;
+                Console.WriteLine(e.Message);
             }
             
             familiares = _familiares.GetAllFamiliares();

@@ -1078,6 +1078,9 @@
         }
       },
       "Dominio/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Abstractions": "5.0.0"
+        },
         "runtime": {
           "Dominio.dll": {}
         }

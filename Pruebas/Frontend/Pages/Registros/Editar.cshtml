@@ -1,0 +1,169 @@
+@page
+@model Frontend.Pages.Registros.Editar
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Editar</title>
+</head>
+<body>
+<h3 class="display-5">Editar Informacion</h3>
+<div>
+    @{
+        if (Model.nino!=null)
+        {
+            <form method="post">
+                <label for="cc">Id:</label>
+                <input type="text" id="cc" name="cc" value="@Model.nino.Id" readonly><br>
+                <label for="genere">Genero: </label>
+                <input type="radio" id="male" name="genere" value="0">
+                <label for="male">Masculino </label>
+                <input type="radio" id="female" name="genere" value="1">
+                <label for="female">Femenino </label><br>
+
+                <label for="names">Nombres*: </label>
+                <input type="text" id="names" name="names" pattern="[a-zA-Z\s]+" value="@Model.nino.Nombre"><br>
+
+                <label for="lastnames">Apellidos*: </label>
+                <input type="text" id="lastnames" name="lastnames" pattern="[a-zA-Z\s]+" value="@Model.nino.Apellido"><br>
+
+                <label for="document">Documento*: </label>
+                <input type="text" id="document" name="document" pattern="[0-9]+" value="@Model.nino.Documento"><br>
+
+                <label for="phone">Telefono*: </label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" value="@Model.nino.Telefono"><br>
+                <small>(Ejemplo: 3001115588 o 6027223344)</small><br>
+
+                <label for="address">Direccion*: </label>
+                <input type="text" id="address" name="address" value="@Model.nino.Direccion"><br>
+
+                <label for="latitude">Latitud: </label>
+                <input type="text" id="latitude" name="latitude" value="0"><br>
+
+                <label for="longitude">Longitud: </label>
+                <input type="text" id="longitude" name="longitude" value="0"><br>
+
+                <label for="city">Ciudad*: </label>
+                <input type="text" id="city" name="city" pattern="[a-zA-Z\s]+" value="@Model.nino.Ciudad"><br>
+
+                <label for="birthday">Fecha de Nacimiento*: </label>
+                <input type="date" id="birthday" name="birthday" min="1900-01-01" max=@Model.fechahoy><br>
+
+                <input type="submit" id="Guardar" name="Guardar" value="Guardar"><br><br><br>
+            </form>
+            <a asp-page="./Pacientes">
+                <span class="material-icons">reply</span>
+            </a>
+            
+        }else if (Model.medico!=null)
+        {
+            <form method="post">
+                <label for="cc">Id:</label>
+                <input type="text" id="cc" name="cc" value="@Model.medico.Id" readonly><br>
+                <label for="genere">Genero: </label>
+                <input type="radio" id="male" name="genere" value="0">
+                <label for="male">Masculino </label>
+                <input type="radio" id="female" name="genere" value="1">
+                <label for="female">Femenino </label><br>
+
+                <label for="names">Nombres*: </label>
+                <input type="text" id="names" name="names" pattern="[a-zA-Z\s]+" value="@Model.medico.Nombre"><br>
+
+                <label for="lastnames">Apellidos*: </label>
+                <input type="text" id="lastnames" name="lastnames" pattern="[a-zA-Z\s]+" value="@Model.medico.Apellido"><br>
+
+                <label for="document">Documento*: </label>
+                <input type="text" id="document" name="document" pattern="[0-9]+" value="@Model.medico.Documento"><br>
+
+                <label for="phone">Telefono*: </label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" value="@Model.medico.Telefono"><br>
+                <small>(Ejemplo: 3001115588 o 6027223344)</small><br>
+
+                <label for="code">Codigo*: </label>
+                <input type="text" id="code" name="code" value="@Model.medico.Codigo"><br>
+
+                <label for="speciality">Especialidad: </label>
+                <input type="radio" id="pedi" name="speciality" value="0">
+                <label for="pedi">Pediatra </label>
+                <input type="radio" id="nutri" name="speciality" value="1">
+                <label for="nutri">Nutricionista </label><br>
+
+                <label for="rethus">Registro Rethus*: </label>
+                <input type="text" id="rethus" name="rethus" value="@Model.medico.RegistroRethus"><br>
+
+                <input type="submit" value="Guardar"><br><br><br>
+            </form>
+            <a asp-page="./Medicos">
+                <span class="material-icons">reply</span>
+            </a>
+        }else if (Model.familiar!=null){
+            <form method="post">
+                <label for="cc">Id:</label>
+                <input type="text" id="cc" name="cc" value="@Model.familiar.Id" readonly><br>
+                <label for="genere">Genero: </label>
+                <input type="radio" id="male" name="genere" value="0">
+                <label for="male">Masculino </label>
+                <input type="radio" id="female" name="genere" value="1">
+                <label for="female">Femenino </label><br>
+
+                <label for="names">Nombres*: </label>
+                <input type="text" id="names" name="names" pattern="[a-zA-Z\s]+" value="@Model.familiar.Nombre"><br>
+
+                <label for="lastnames">Apellidos*: </label>
+                <input type="text" id="lastnames" name="lastnames" pattern="[a-zA-Z\s]+" value="@Model.familiar.Apellido"><br>
+
+                <label for="document">Documento*: </label>
+                <input type="text" id="document" name="document" pattern="[0-9]+" value="@Model.familiar.Documento"><br>
+
+                <label for="phone">Telefono*: </label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" value="@Model.familiar.Telefono"><br>
+                <small>(Ejemplo: 3001115588 o 6027223344)</small><br>
+                
+                <label for="relationship">Parentesco*: </label>
+                <input type="text" id="relationship" name="relationship" pattern="[a-zA-Z\s]+" value="@Model.familiar.Parentesco"><br>
+                        
+                <label for="e-mail">Correo*: </label>
+                <input type="email" id="e-mail" name="e-mail" value="@Model.familiar.Correo"><br>
+                
+                <input type="submit" value="Guardar"><br>
+                
+            </form>
+
+            <a asp-page="./Familiares">
+                <span class="material-icons">reply</span>
+            </a>
+        }
+    }
+</div>
+        @{
+            switch (Model.mensaje)
+            {
+                case 1:
+                    <script>
+                    window.alert("Longitudo, Latitud y/o Fecha de nacimiento invalida")
+                    </script>
+                    Model.mensaje = 0;
+                    break;
+
+                case 2:
+                    <script>
+                    window.alert("No puede dejar vacios campos obligatorios*")
+                </script>
+                    Model.mensaje = 0;
+                    break;
+
+                case 3:
+                    <script>
+                    window.alert("Paciente guardado con exito!")
+                </script>
+                    Model.mensaje = 0;
+                    break;
+            }
+        }
+</body>
+</html>

@@ -1,0 +1,119 @@
+@page
+@model Frontend.Pages.Registros.Borrar
+
+@{
+    ViewData["Title"] = "Borrar";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Borrar</title>
+</head>
+<body>
+    <h3 class="display-5">Borrar Registro</h3>
+<div>
+@{
+        if (Model.nino!=null)
+        {
+            <table class="table" style="float: left; width: 60%">
+                <tr>
+                    <th>Id:</th><td>@Model.nino.Id</td>
+                </tr>
+                <tr>
+                    <th>Nombres:</th><td>@Model.nino.Nombre</td>
+                </tr>
+                <tr>
+                    <th>Apellidos:</th><td>@Model.nino.Apellido</td>
+                </tr>
+                <tr>
+                    <th>Genero:</th><td>@Model.nino.Genero</td>
+                </tr>
+                <tr>
+                    <th>Telefono:</th><td>@Model.nino.Telefono</td>
+                </tr>
+                <tr>
+                    <th>Fecha de Nacimiento:</th><td>@Model.nino.Nacimiento.ToString("dd/MM/yyyy")</td>
+                </tr>
+                <tr>
+                    <th>Direccion:</th><td>@Model.nino.Direccion</td>
+                </tr>
+                <tr>
+                    <th>Ciudad:</th><td>@Model.nino.Ciudad</td>
+                </tr>
+                <tr>
+                    <th>Latitud:</th><td>@Model.nino.Latitud.ToString()</td>
+                </tr>
+                <tr>
+                    <th>Longitud:</th><td>@Model.nino.Longitud.ToString()</td>
+                </tr>
+            </table>
+            <a asp-page="./Pacientes">
+                <span class="material-icons">reply</span>
+            </a>
+        }else if (Model.familiar!=null)
+        {
+            <table class="table" style="float: left; width: 60%">
+                <tr>
+                    <th>Id:</th><td>@Model.familiar.Id</td>
+                </tr>
+                <tr>
+                    <th>Nombres:</th><td>@Model.familiar.Nombre</td>
+                </tr>
+                <tr>
+                    <th>Apellidos:</th><td>@Model.familiar.Apellido</td>
+                </tr>
+                <tr>
+                    <th>Genero:</th><td>@Model.familiar.Genero</td>
+                </tr>
+                <tr>
+                    <th>Telefono:</th><td>@Model.familiar.Telefono</td>
+                </tr>
+                <tr>
+                    <th>Parentesco:</th><td>@Model.familiar.Parentesco</td>
+                </tr>
+                <tr>
+                    <th>Correo:</th><td>@Model.familiar.Correo</td>
+                </tr>
+            </table>
+            <a asp-page="./Familiares">
+                <span class="material-icons">reply</span>
+            </a>
+        }else if (Model.medico!=null)
+        {
+            <table class="table" style="float: left; width: 60%">
+                <tr>
+                    <th>Id:</th><td>@Model.medico.Id</td>
+                </tr>
+                <tr>
+                    <th>Nombres:</th><td>@Model.medico.Nombre</td>
+                </tr>
+                <tr>
+                    <th>Apellidos:</th><td>@Model.medico.Apellido</td>
+                </tr>
+                <tr>
+                    <th>Genero:</th><td>@Model.medico.Genero</td>
+                </tr>
+                <tr>
+                    <th>Telefono:</th><td>@Model.medico.Telefono</td>
+                </tr>
+                <tr>
+                    <th>Codigo:</th><td>@Model.medico.Codigo</td>
+                </tr>
+                <tr>
+                    <th>Rethus:</th><td>@Model.medico.RegistroRethus</td>
+                </tr>
+            </table>
+            <a asp-page="./Medicos">
+                <span class="material-icons">reply</span>
+            </a>
+        }
+}
+<h5 style="float: left; width: 40%">Esta seguro que desea borrar este registro?</h5><br>
+<form method="post">
+    <input type="submit" name="Si, Borrar Registro" id="Si, Borrar Registro" value="Si, Borrar Registro">
+</form>
+</div>
+</body>
+</html>

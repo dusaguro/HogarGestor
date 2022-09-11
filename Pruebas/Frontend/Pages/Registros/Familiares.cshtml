@@ -11,6 +11,7 @@
 <head>
     <title>Familiares</title>
     <link rel="stylesheet" href="css/Formularios.css">
+    <link rel="script" href="js/site.js">
 </head>
 <body>
 <section style="float: left;width: 35%">
@@ -82,6 +83,7 @@
             <th>Documento</th>
             <th>Telefono</th>
             <th>Correo</th>
+            <th>Opciones</th>
         </tr>
         @foreach (var n in Model.familiares)
         {
@@ -90,6 +92,24 @@
                 <td>@n.Documento</td>
                 <td>@n.Telefono</td>
                 <td>@n.Correo</td>
+                <td>
+                    <a asp-page="./Informacion" asp-route-id="@n.Id" asp-route-tipo="familiar">
+                        <span class="material-icons">
+                            info
+                        </span>
+                    </a>
+                    <a asp-page="./Editar" asp-route-id="@n.Id" asp-route-tipo="familiar">
+                        <span class="material-icons">
+                            edit
+                        </span>
+                    </a>
+                    <a asp-page="./Borrar" asp-route-id="@n.Id" asp-route-tipo="familiar">
+                        <span class="material-icons">
+                            delete
+                        </span>
+                    </a>
+                    
+                </td>
             </tr>
         }
     </table>

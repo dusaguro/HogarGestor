@@ -1,11 +1,38 @@
 {
   "version": 3,
   "targets": {
-    ".NETStandard,Version=v2.1": {}
+    ".NETStandard,Version=v2.1": {
+      "Microsoft.EntityFrameworkCore.Abstractions/5.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/Microsoft.EntityFrameworkCore.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Microsoft.EntityFrameworkCore.Abstractions.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Microsoft.EntityFrameworkCore.Abstractions/5.0.0": {
+      "sha512": "PCDiskNvB+1rs+d3ET0Itm3mPj6+CpFO7V1nPXfVL6ipS6+27vKs9mnEP4C8vTr2BhSpyvKQetp4Z0ktrqv+wg==",
+      "type": "package",
+      "path": "microsoft.entityframeworkcore.abstractions/5.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "lib/netstandard2.1/Microsoft.EntityFrameworkCore.Abstractions.dll",
+        "lib/netstandard2.1/Microsoft.EntityFrameworkCore.Abstractions.xml",
+        "microsoft.entityframeworkcore.abstractions.5.0.0.nupkg.sha512",
+        "microsoft.entityframeworkcore.abstractions.nuspec"
+      ]
+    }
+  },
   "projectFileDependencyGroups": {
-    ".NETStandard,Version=v2.1": []
+    ".NETStandard,Version=v2.1": [
+      "Microsoft.EntityFrameworkCore.Abstractions >= 5.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\dusag\\.nuget\\packages\\": {}
@@ -41,6 +68,12 @@
     },
     "frameworks": {
       "netstandard2.1": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Abstractions": {
+            "target": "Package",
+            "version": "[5.0.0, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",

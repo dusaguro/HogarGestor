@@ -10,52 +10,35 @@ namespace Consola
         //private static string fechahoy;
         static void Main(string[] args)
         {
-            
-            Console.WriteLine("Hello World!");
-            /*var tio = new Familiar
+            /*var familiar = new Familiar
             {
-                Nombre = "Camilo",
-                Apellido = "Rodríguez",
-                Documento = "123456",
-                Telefono = "3002556998",
+                Nombre = "Nathalia",
+                Apellido = "Guerrero",
+                Documento = "1233569874",
+                Telefono = "3017609586",
                 Correo = "correo@algo.com",
-                Genero = Genero.masculino,
-                Parentesco = "Tio"
+                Genero = Genero.Femenino,
+                Parentesco = "Hermana"
             };
-            _familiares.AddFamiliar(tio);*/
+            _familiares.AddFamiliar(familiar);*/
             
-            /*var tio = new Familiar
+            /*var familiar = new Familiar
             {   
-                Id = 1,
-                Nombre = "Camilo",
-                Apellido = "Nunez",
-                Documento = "654987",
-                Telefono = "3003334444",
-                Correo = "correo@algo.es",
-                Genero = Genero.masculino,
-                Parentesco = "Papa"
+                Id = 5,
+                Nombre = "Alexandra",
+                Apellido = "Guerra",
+                Documento = "1233569874",
+                Telefono = "3007772020",
+                Correo = "algo@correo.es",
+                Genero = Genero.Femenino,
+                Parentesco = "Prima"
             };
-            _familiares.UpdateFamiliar(tio);*/
+            _familiares.UpdateFamiliar(familiar);*/
             
+            /*var familiar = _familiares.GetFamiliar(3);
+            Console.WriteLine("Familiar: " + familiar.Nombre + " " + familiar.Apellido);*/
             
-            /*var tio = _familiares.GetFamiliar(1);
-            Console.WriteLine("Familiar: " + tio.Nombre + " " + tio.Apellido);*/
-            /*var today = DateTime.Now;
-            var dd = today.Day.ToString();
-            /*if (today.Day<10)
-            {
-                dd = "0" + dd;
-            }#1#
-            Console.WriteLine(dd);
-            var mm = today.Month.ToString();
-            /*if (today.Month<10)
-            {
-                mm = "0" + mm;
-            }#1#
-            Console.WriteLine(mm);
-            var yyyy = today.Year.ToString();
-            Console.WriteLine(yyyy);
-            fechahoy = yyyy + "-" + mm + "-" + dd;*/
+            /*_familiares.DeleteFamiliar(3);*/
         }
         
     }

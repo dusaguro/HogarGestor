@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "vVJpqwFGcwzSEf0DOUHcu73fg6rTNTR7+qblx4TVwtL3VEtSuXEU7tbYX2jR5YcmUgVNe/w5CtdUkelqeCl1vA==",
+  "dgSpecHash": "OakaIKBLa2vChkzYr6VxmuDlwB3xjgFG1ysjT31yiszT+LBM1phDmlIG8cZCfevAfKc90IIy3eDfvqPv9LbqBg==",
   "success": true,
   "projectFilePath": "C:\\Users\\dusag\\Desktop\\App de Pruebas\\Pruebas\\Dominio\\Dominio.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\dusag\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.0\\microsoft.entityframeworkcore.abstractions.5.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

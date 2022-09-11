@@ -12,13 +12,15 @@
     <title>Pagina de Pruebas</title>
 </head>
 <body>
-<div>
+@*<div>
     <form method="post">
-        @*<input type="button" id="boton" name="boton" value="boton">*@
-        <input type="submit" id="enviar" name="enviar" value="enviar"><br>
-        <input type="submit" id="guardar" name="guardar" value="guardar">
-        @*<button onclick="@{ Model.caso = 1;}">Botón</button>*@
+        $1$<input type="button" id="boton" name="boton" value="boton">#1#
+        $1$<input type="submit" id="enviar" name="enviar" value="enviar"><br>
+        <input type="submit" id="guardar" name="guardar" value="guardar">#1#
+        $1$<button onclick="@{ Model.caso = 1;}">Botón</button>#1#
     </form>
-</div>
+</div>*@
+<button type="submit" onclick="@{ Model.caso = 21;}"><span class="material-icons">info</span></button>
+
 </body>
 </html>

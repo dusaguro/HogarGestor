@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using HogarGestor.App.Dominio;
+using Microsoft.EntityFrameworkCore;
 
 namespace HogarGestor.App.Pericistencia
 {
@@ -27,7 +28,7 @@ namespace HogarGestor.App.Pericistencia
 
         public Nino GetPersona(int idPersona)
         {
-            return _appDbContext.Ninos.FirstOrDefault(n => n.Id == idPersona);
+            return _appDbContext.Ninos.FirstOrDefault(n => n.Documento == idPersona.ToString());
         }
 
         public Nino UpdatePersona(Nino persona)
@@ -54,7 +55,7 @@ namespace HogarGestor.App.Pericistencia
 
         public void DeletePersona(int idPersona)
         {
-            var ninoEncontrado = _appDbContext.Ninos.FirstOrDefault(n => n.Id == idPersona);
+            var ninoEncontrado = _appDbContext.Ninos.FirstOrDefault(n => n.Documento == idPersona.ToString());
             if (ninoEncontrado==null)
             {
                 return;
@@ -63,5 +64,6 @@ namespace HogarGestor.App.Pericistencia
             _appDbContext.Ninos.Remove(ninoEncontrado);
             _appDbContext.SaveChanges();
         }
+        
     }
 }

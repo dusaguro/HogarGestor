@@ -14,6 +14,7 @@ namespace Frontend.Pages.Registros
         private IRepositorioNino _nino = new RepositorioNino(new AppDbContext());
         public IEnumerable<Nino> ninos { get; set; }
         public string fechahoy;
+        public int select;
         public int mensaje = 0;
         public Nino ninobuscado { get; set; }
         public void OnGet()
@@ -23,10 +24,10 @@ namespace Frontend.Pages.Registros
         }
 
         public void OnPost()
-        {   
+        {
             fechahoy = MisFunciones.limitefecha();
 
-            switch (Request.Form["Registrar"]+Request.Form["Consultar"])
+            switch (Request.Form["Registrar"] + Request.Form["Consultar"])
             {
                 case "Registrar":
                     var paciente = new Nino();
@@ -55,6 +56,7 @@ namespace Frontend.Pages.Registros
                     catch (Exception e)
                     {
                         mensaje = 1;
+                        Console.WriteLine(e.Message);
                     }
                     
                     break;
@@ -71,14 +73,18 @@ namespace Frontend.Pages.Registros
                     catch (Exception e)
                     {
                         mensaje = 5;
+                        Console.WriteLine(e.Message);
                     }
                     break;
                 
                 default:
-                    Console.WriteLine("ERROR: Desconocido");
+                    //Console.WriteLine("ERROR: Desconocido");
                     break;
             }
             ninos = _nino.GetAllPersonas();
+            
+            
+
         }
     }
 }

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "aPkVgWg/chY7gUmNweSPB9lscvCUmYi2ihFp5RxTPkDAuywwgShfmwr6d1GIxcwwIpVWDPLsaES41Vwn1fOUKw==",
+  "dgSpecHash": "3zbAQ/yKBNxMgpdJbhWY5/goJD1N6nlXmzpw5S3oS2BRoLsv6Ybw+TrRjN6RlI7N0cmSfwvStVCA80wPuy7REQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\dusag\\Desktop\\App de Pruebas\\Pruebas\\Servicios\\Servicios.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\dusag\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.0\\microsoft.entityframeworkcore.abstractions.5.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Persistencia.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220903174607_Inicial")]
+    [Migration("20220917051956_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,27 +64,19 @@ namespace Persistencia.Migrations
                     b.Property<string>("Diagnostico")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("FamiliarId")
+                    b.Property<int>("idFamiliar")
                         .HasColumnType("int");
 
-                    b.Property<int?>("MedicoId")
+                    b.Property<int>("idMedico")
                         .HasColumnType("int");
 
-                    b.Property<int?>("NinoId")
+                    b.Property<int>("idNino")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SugerenciasCuidadoId")
+                    b.Property<int>("idSugerenciasCuidado")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("FamiliarId");
-
-                    b.HasIndex("MedicoId");
-
-                    b.HasIndex("NinoId");
-
-                    b.HasIndex("SugerenciasCuidadoId");
 
                     b.ToTable("HistoriasClinicas");
                 });
@@ -159,15 +151,13 @@ namespace Persistencia.Migrations
                     b.Property<string>("Nombre")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PatronesCrecimientoId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Telefono")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<int>("idPatronesCrecimiento")
+                        .HasColumnType("int");
 
-                    b.HasIndex("PatronesCrecimientoId");
+                    b.HasKey("Id");
 
                     b.ToTable("Ninos");
                 });
@@ -203,12 +193,10 @@ namespace Persistencia.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int?>("PatronesCrecimientoId")
+                    b.Property<int>("idPatronesCrecimiento")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PatronesCrecimientoId");
 
                     b.ToTable("RegistrosHistoricos");
                 });
@@ -229,51 +217,6 @@ namespace Persistencia.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SugerenciasCuidados");
-                });
-
-            modelBuilder.Entity("HogarGestor.App.Dominio.HistoriaClinica", b =>
-                {
-                    b.HasOne("HogarGestor.App.Dominio.Familiar", "Familiar")
-                        .WithMany()
-                        .HasForeignKey("FamiliarId");
-
-                    b.HasOne("HogarGestor.App.Dominio.Medico", "Medico")
-                        .WithMany()
-                        .HasForeignKey("MedicoId");
-
-                    b.HasOne("HogarGestor.App.Dominio.Nino", "Nino")
-                        .WithMany()
-                        .HasForeignKey("NinoId");
-
-                    b.HasOne("HogarGestor.App.Dominio.SugerenciasCuidado", "SugerenciasCuidado")
-                        .WithMany()
-                        .HasForeignKey("SugerenciasCuidadoId");
-
-                    b.Navigation("Familiar");
-
-                    b.Navigation("Medico");
-
-                    b.Navigation("Nino");
-
-                    b.Navigation("SugerenciasCuidado");
-                });
-
-            modelBuilder.Entity("HogarGestor.App.Dominio.Nino", b =>
-                {
-                    b.HasOne("HogarGestor.App.Dominio.PatronesCrecimiento", "PatronesCrecimiento")
-                        .WithMany()
-                        .HasForeignKey("PatronesCrecimientoId");
-
-                    b.Navigation("PatronesCrecimiento");
-                });
-
-            modelBuilder.Entity("HogarGestor.App.Dominio.RegistroHistorico", b =>
-                {
-                    b.HasOne("HogarGestor.App.Dominio.PatronesCrecimiento", "PatronesCrecimiento")
-                        .WithMany()
-                        .HasForeignKey("PatronesCrecimientoId");
-
-                    b.Navigation("PatronesCrecimiento");
                 });
 #pragma warning restore 612, 618
         }

@@ -8,6 +8,7 @@ namespace HogarGestor.App.Pericistencia
         IEnumerable<Nino> GetAllPersonas();
         Nino AddPersona(Nino persona);
         Nino GetPersona(int idPersona);
+        Nino GetPersonaById(int idPersona);
         Nino UpdatePersona(Nino persona);
         void DeletePersona(int idPersona);
     }

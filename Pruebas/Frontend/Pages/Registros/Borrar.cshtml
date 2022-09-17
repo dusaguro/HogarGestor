@@ -10,12 +10,62 @@
 <html>
 <head>
     <title>Borrar</title>
+        <style>
+            section::after {
+              content: "";
+              display: table;
+              clear: both;
+            }
+        </style>
 </head>
 <body>
     <h3 class="display-5">Borrar Registro</h3>
-<div>
+<section>
 @{
-        if (Model.nino!=null)
+        if (Model.historia!=null)
+        {
+            <table class="table" style="float: left; width: 60%">
+                <tr>
+                    <th>Id:</th><td>@Model.historia.Id</td>
+                </tr>
+                <tr>
+                    <th>Paciente:</th><td id="pac">No Asignado</td>
+                        @if (!(Model.nino.Nombre + Model.nino.Apellido).Equals(""))
+                        {
+                            <script>
+                                document.getElementById("pac").innerHTML = "@Model.nino.Nombre @Model.nino.Apellido";
+                            </script>                            
+                        }                    
+                </tr>
+                <tr>
+                    <th>Familiar:</th><td id="fam">No Asignado</td>
+                        @if (!(Model.familiar.Nombre + Model.familiar.Apellido).Equals(""))
+                        {
+                            <script>
+                                document.getElementById("fam").innerHTML = "@Model.familiar.Nombre @Model.familiar.Apellido";
+                            </script>                            
+                        }                    
+                </tr>
+                <tr>
+                    <th>Medico:</th><td id="med">No Asignado</td>
+                        @if (!(Model.medico.Nombre + Model.medico.Apellido).Equals(""))
+                        {
+                            <script>
+                                document.getElementById("med").innerHTML = "@Model.medico.Nombre @Model.medico.Apellido";
+                            </script>                            
+                        }                    
+                </tr>
+                <tr>
+                    <th>Diagnostico:</th><td>@Model.historia.Diagnostico</td>
+                </tr>
+                <tr>
+                    <th>Sugerencias:</th><td>@Model.historia.idSugerenciasCuidado</td>
+                </tr>
+            </table>
+            <a asp-page="./Asignacion">
+                <span class="material-icons">reply</span>
+            </a>
+        }else if (Model.nino!=null)
         {
             <table class="table" style="float: left; width: 60%">
                 <tr>
@@ -117,6 +167,6 @@
 <form method="post">
     <input type="submit" name="Si, Borrar Registro" id="Si, Borrar Registro" value="Si, Borrar Registro">
 </form>
-</div>
+</section>
 </body>
 </html>

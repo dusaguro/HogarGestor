@@ -10,10 +10,11 @@ namespace Frontend.Pages.Registros
         private readonly IRepositorioNino _nino = new RepositorioNino(new AppDbContext());
         private readonly IRepositorioMedicos _medico = new RepositorioMedicos(new AppDbContext());
         private readonly IRepositorioFamiliares _familiar = new RepositorioFamiliares(new AppDbContext());
+        private readonly IRepositorioHistoriaClinica _historia = new RepositorioHistoriaClinica(new AppDbContext());
         public Nino nino { get; set; }
         public Medico medico { get; set; }
         public Familiar familiar { get; set; }
-        
+        public HistoriaClinica historia { get; set; }
         public IActionResult OnGet(int id, string tipo)
         {
             
@@ -23,7 +24,7 @@ namespace Frontend.Pages.Registros
                     nino = _nino.GetPersona(id);
                     if (nino==null)
                     {
-                        return RedirectToPage("./Pages/Error");
+                        return RedirectToPage("../Error");
                     }
                     return Page();
                 
@@ -31,20 +32,31 @@ namespace Frontend.Pages.Registros
                     medico = _medico.GetPersona(id);
                     if (medico==null)
                     {
-                        return RedirectToPage("./Pages/Error");
+                        return RedirectToPage("../Error");
                     }
                     return Page();
                 
                 case "familiar":
                     familiar = _familiar.GetFamiliar(id);
-                    if (medico!=null)
+                    if (familiar==null)
                     {
-                        return RedirectToPage("./Pages/Error");
+                        return RedirectToPage("../Error");
+                    }
+                    return Page();
+                
+                case "asignacion":
+                    historia = _historia.GetHistoria(id);
+                    nino = _nino.GetPersonaById(historia.idNino);
+                    familiar = _familiar.GetFamiliar(historia.idFamiliar);
+                    medico = _medico.GetPersona(historia.idMedico);
+                    if (historia==null)
+                    {
+                        return RedirectToPage("../Error");
                     }
                     return Page();
                 
                 default:
-                    return RedirectToPage("./Pages/Error");
+                    return RedirectToPage("../Error");
                 
             }
         }
@@ -63,7 +75,7 @@ namespace Frontend.Pages.Registros
                     nino = _nino.GetPersona(id);
                     if (nino==null)
                     {
-                        return RedirectToPage("./Pages/Error");
+                        return RedirectToPage("../Error");
                     }
                     return Page();
                 
@@ -76,7 +88,7 @@ namespace Frontend.Pages.Registros
                     medico = _medico.GetPersona(id);
                     if (medico==null)
                     {
-                        return RedirectToPage("./Pages/Error");
+                        return RedirectToPage("../Error");
                     }
                     return Page();
                 
@@ -87,14 +99,30 @@ namespace Frontend.Pages.Registros
                         return RedirectToPage("./Familiares");
                     }
                     familiar = _familiar.GetFamiliar(id);
-                    if (medico!=null)
+                    if (familiar==null)
                     {
-                        return RedirectToPage("./Pages/Error");
+                        return RedirectToPage("../Error");
+                    }
+                    return Page();
+                
+                case "asignacion":
+                    if (Request.Form["Si, Borrar Registro"]=="Si, Borrar Registro")
+                    {
+                        _historia.DeleteHistoria(id);
+                        return RedirectToPage("./Asignacion");
+                    }
+                    historia = _historia.GetHistoria(id);
+                    nino = _nino.GetPersonaById(historia.idNino);
+                    familiar = _familiar.GetFamiliar(historia.idFamiliar);
+                    medico = _medico.GetPersona(historia.idMedico);
+                    if (historia==null)
+                    {
+                        return RedirectToPage("../Error");
                     }
                     return Page();
                 
                 default:
-                    return RedirectToPage("./Pages/Error");
+                    return RedirectToPage("../Error");
                 
             }
         }

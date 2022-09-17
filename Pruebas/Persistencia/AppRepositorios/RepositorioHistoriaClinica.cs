@@ -36,10 +36,10 @@ namespace HogarGestor.App.Pericistencia
             if (historiaEncontrada!=null)
             {
                 historiaEncontrada.Diagnostico = historiaClinica.Diagnostico;
-                historiaEncontrada.Medico = historiaClinica.Medico;
-                historiaEncontrada.Familiar = historiaClinica.Familiar;
-                historiaEncontrada.Nino = historiaClinica.Nino;
-                historiaEncontrada.SugerenciasCuidado = historiaClinica.SugerenciasCuidado;
+                historiaEncontrada.idMedico = historiaClinica.idMedico;
+                historiaEncontrada.idFamiliar = historiaClinica.idFamiliar;
+                historiaEncontrada.idNino = historiaClinica.idNino;
+                historiaEncontrada.idSugerenciasCuidado = historiaClinica.idSugerenciasCuidado;
                 _appDbContext.SaveChanges();
             }
 

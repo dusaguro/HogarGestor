@@ -15,7 +15,6 @@ namespace HogarGestor.App.Pericistencia
         public DbSet<RegistroHistorico> RegistrosHistoricos { get; set; }
         public DbSet<SugerenciasCuidado> SugerenciasCuidados { get; set; }
         
-        public DbSet<Campos> NombresCampos { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder){
 			if(!optionsBuilder.IsConfigured){
 			optionsBuilder.UseSqlServer("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = HogarGestorDB");

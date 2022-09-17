@@ -1,0 +1,162 @@
+@page
+@model Frontend.Pages.Registros.Asignacion
+
+@{
+    ViewData["Title"] = "Asignacion";
+}
+
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+    <title>Asignacion de Pacientes</title>
+    <link rel="stylesheet" href="css/Formularios.css">
+    <style>
+            section::after {
+              content: "";
+              display: table;
+              clear: both;
+            }
+        </style>
+</head>
+<body>
+<section>
+<article style="float: left; width: 35%">
+    <h3 class="display-5">Crear Asignación</h3>
+    <form method="post">
+        <label for="paciente">Paciente*:</label><br>
+        <select name="paciente" style="width: 90%">
+            <option value="0">[Seleccion un opción]</option>
+            @foreach (var i in Model.ninos)
+            {
+                <option value="@i.Id">@i.Nombre @i.Apellido</option>
+            }
+        </select><br>
+        <label for="familiar">Familiar*:</label><br>
+        <select name="familiar" style="width: 90%">
+            <option value="0">[Seleccion un opción]</option>
+            @foreach (var i in Model.familliares)
+            {
+                <option value="@i.Id">@i.Nombre @i.Apellido</option>
+            }
+        </select><br>
+        <label for="medicos">Medico*:</label><br>
+        <select name="medico" style="width: 90%">
+            <option value="0">[Seleccion un opción]</option>
+            @foreach (var i in Model.medicos)
+            {
+                <option value="@i.Id">@i.Nombre @i.Apellido</option>
+            }
+        </select><br>
+        <label for="diagnostico">Diagnostico:</label><br>
+        @*<input type="text" name="diagnostico" id="diagnostico" style="width: 90%"><br>*@
+        <textarea name="diagnostico" id="diagnostico" style="width: 90%" cols="30" rows="5"></textarea>
+        <br>
+        <input type="submit" value="Asignar">
+    </form>
+    @{
+                switch (Model.mensaje)
+                {
+                    case 1:
+                        <script>
+                            window.alert("No deje sin seleccionar campos obligatorios*")
+                        </script>
+                        Model.mensaje = 0;
+                        break;
+    
+                    case 2:
+                        <script>
+                            window.alert("Asignacion exitosa!")
+                        </script>
+                        Model.mensaje = 0;
+                        break;
+    
+                    case 3:
+                        <script>
+                            window.alert("Error de asignacion")
+                        </script>
+                        Model.mensaje = 0;
+                        break;
+                }
+            }
+</article>
+<aside style="float: left; width: 65%">
+    <h3 class="display-5">Lista de Asignaciones</h3>
+    <table class="table">
+        <tr>
+            <th>Paciente</th>
+            <th>Familiar</th>
+            <th>Medico</th>
+            <th>Opciones</th>
+        </tr>
+        @{
+            int j = 0;
+            foreach (var a in Model.historias)
+            {
+                <tr>
+                    @{var z = "pac" + j;}
+                    <td id="@z">No Asignado</td>
+                    @{
+                        foreach (var x in Model.ninos)
+                        {
+                            if (x.Id == a.idNino)
+                            {
+                                <script>
+                                document.getElementById("@z").innerHTML = "@x.Nombre @x.Apellido";
+                            </script>
+                            }
+                        }
+                    }
+                    @{ z = "fam" + j;}
+                    <td id="@z">No Asignado</td>
+                    @{
+                        foreach (var x in Model.familliares)
+                        {
+                            if (x.Id == a.idFamiliar)
+                            {
+                                <script>
+                                document.getElementById("@z").innerHTML = "@x.Nombre @x.Apellido";
+                            </script>
+                            }
+                        }
+                    }
+                    @{ z = "med" + j;}
+                    <td id="@z">No Asignado</td>
+                    @{
+                        foreach (var x in Model.medicos)
+                        {
+                            if (x.Id == a.idMedico)
+                            {
+                                <script>
+                                document.getElementById("@z").innerHTML = "@x.Nombre @x.Apellido";
+                            </script>
+                            }
+                        }
+                    }
+                    <td>
+                        <a asp-page="./Informacion" asp-route-id="@a.Id" asp-route-tipo="asignacion">
+                            <span class="material-icons">
+                                info
+                            </span>
+                        </a>
+                        <a asp-page="./Editar" asp-route-id="@a.Id" asp-route-tipo="asignacion">
+                            <span class="material-icons">
+                                edit
+                            </span>
+                        </a>
+                        <a asp-page="./Borrar" asp-route-id="@a.Id" asp-route-tipo="asignacion">
+                            <span class="material-icons">
+                                delete
+                            </span>
+                        </a>
+
+                    </td>
+                </tr>
+                j++;
+            }
+        }
+    </table>
+</aside>    
+</section>
+</body>
+</html>

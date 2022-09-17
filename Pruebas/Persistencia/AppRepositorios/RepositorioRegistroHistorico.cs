@@ -35,7 +35,7 @@ namespace HogarGestor.App.Pericistencia
             var registroEncontrado = _appDbContext.RegistrosHistoricos.FirstOrDefault(r => r.Id == registroHistorico.Id);
             if (registroEncontrado!=null)
             {
-                registroEncontrado.PatronesCrecimiento = registroHistorico.PatronesCrecimiento;
+                registroEncontrado.idPatronesCrecimiento = registroHistorico.idPatronesCrecimiento;
                 _appDbContext.SaveChanges();
             }
 

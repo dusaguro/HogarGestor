@@ -31,6 +31,11 @@ namespace HogarGestor.App.Pericistencia
             return _appDbContext.Ninos.FirstOrDefault(n => n.Documento == idPersona.ToString());
         }
 
+        public Nino GetPersonaById(int idPersona)
+        {
+            return _appDbContext.Ninos.FirstOrDefault(n => n.Id == idPersona);
+        }
+
         public Nino UpdatePersona(Nino persona)
         {
             var ninoEncontrado = _appDbContext.Ninos.FirstOrDefault(n => n.Id == persona.Id);
@@ -46,7 +51,7 @@ namespace HogarGestor.App.Pericistencia
                 ninoEncontrado.Longitud = persona.Longitud;
                 ninoEncontrado.Ciudad = persona.Ciudad;
                 ninoEncontrado.Nacimiento = persona.Nacimiento;
-                ninoEncontrado.PatronesCrecimiento = persona.PatronesCrecimiento;
+                ninoEncontrado.idPatronesCrecimiento = persona.idPatronesCrecimiento;
                 _appDbContext.SaveChanges();
             }
 

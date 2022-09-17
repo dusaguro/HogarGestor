@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Dominio.MisFunciones;
 using HogarGestor.App.Dominio;
 using HogarGestor.App.Pericistencia;
@@ -12,12 +13,16 @@ namespace Frontend.Pages.Registros
         private readonly IRepositorioNino _nino = new RepositorioNino(new AppDbContext());
         private readonly IRepositorioMedicos _medico = new RepositorioMedicos(new AppDbContext());
         private readonly IRepositorioFamiliares _familiar = new RepositorioFamiliares(new AppDbContext());
+        private readonly IRepositorioHistoriaClinica _historia = new RepositorioHistoriaClinica(new AppDbContext());
         public string fechahoy;
         public int mensaje;
         public Nino nino { get; set; }
         public Medico medico { get; set; }
         public Familiar familiar { get; set; }
-        
+        public HistoriaClinica historia { get; set; }
+        public IEnumerable<Nino> ninos { get; set; }
+        public IEnumerable<Familiar> familiares { get; set; }
+        public IEnumerable<Medico> medicos { get; set; }
         public IActionResult OnGet(int id,string tipo)
         {
             fechahoy = MisFunciones.limitefecha();
@@ -27,7 +32,7 @@ namespace Frontend.Pages.Registros
                     nino = _nino.GetPersona(id);
                     if (nino==null)
                     {
-                        return RedirectToPage("./Pages/Error");
+                        return RedirectToPage("../Error");
                     }
                     return Page();
                 
@@ -35,20 +40,31 @@ namespace Frontend.Pages.Registros
                     medico = _medico.GetPersona(id);
                     if (medico==null)
                     {
-                        return RedirectToPage("./Pages/Error");
+                        return RedirectToPage("../Error");
                     }
                     return Page();
                 
                 case "familiar":
                     familiar = _familiar.GetFamiliar(id);
-                    if (medico!=null)
+                    if (familiar==null)
                     {
-                        return RedirectToPage("./Pages/Error");
+                        return RedirectToPage("../Error");
+                    }
+                    return Page();
+                
+                case "asignacion":
+                    historia = _historia.GetHistoria(id);
+                    ninos = _nino.GetAllPersonas();
+                    familiares = _familiar.GetAllFamiliares();
+                    medicos = _medico.GetAllPersonas();
+                    if (historia==null)
+                    {
+                        return RedirectToPage("../Error");
                     }
                     return Page();
                 
                 default:
-                    return RedirectToPage("./Pages/Error");
+                    return RedirectToPage("../Error");
                 
             }
         }
@@ -96,7 +112,7 @@ namespace Frontend.Pages.Registros
                     nino = _nino.GetPersona(id);
                     if (nino==null)
                     {
-                        return RedirectToPage("./Pages/Error");
+                        return RedirectToPage("../Error");
                     }
                     return Page();
                 
@@ -134,7 +150,7 @@ namespace Frontend.Pages.Registros
                     medico = _medico.GetPersona(id);
                     if (medico==null)
                     {
-                        return RedirectToPage("./Pages/Error");
+                        return RedirectToPage("../Error");
                     }
                     return Page();
                 
@@ -169,13 +185,50 @@ namespace Frontend.Pages.Registros
                         Console.WriteLine(e.Message);
                     }
                     familiar = _familiar.GetFamiliar(id);
-                    if (medico!=null)
+                    if (familiar==null)
                     {
-                        return RedirectToPage("./Pages/Error");
+                        return RedirectToPage("../Error");
                     }
                     return Page();
+                
+                case "asignacion":
+                    try
+                    {
+                        var history = new HistoriaClinica();
+                        history.Id = int.Parse(Request.Form["cc"]);
+                        history.idNino = int.Parse(Request.Form["paciente"]);
+                        history.idFamiliar = int.Parse(Request.Form["familiar"]);
+                        history.idMedico = int.Parse(Request.Form["medico"]);
+                        history.Diagnostico = Request.Form["diagnostico"];
+                        if (history.idNino==0||history.idFamiliar==0||history.idMedico==0)
+                        {
+                            mensaje = 2;
+                        }
+                        else
+                        {
+                            historia = _historia.UpdateHistoria(history);
+                            mensaje = 3;
+                            return RedirectToPage("./Asignacion");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                        mensaje = 1;
+                        throw;
+                    }
+                    historia = _historia.GetHistoria(id);
+                    ninos = _nino.GetAllPersonas();
+                    familiares = _familiar.GetAllFamiliares();
+                    medicos = _medico.GetAllPersonas();
+                    if (historia==null)
+                    {
+                        return RedirectToPage("../Error");
+                    }
+                    return Page();
+                
                 default:
-                    return RedirectToPage("./Pages/Error");
+                    return RedirectToPage("../Error");
             }
         }
     }

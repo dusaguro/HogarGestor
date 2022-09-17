@@ -10,6 +10,6 @@ namespace HogarGestor.App.Dominio
         public float Longitud { get; set; }
         public string Ciudad { get; set; }
         public DateTime Nacimiento { get; set; }
-        public PatronesCrecimiento PatronesCrecimiento { get; set; }
+        public int idPatronesCrecimiento { get; set; }
     }
 }

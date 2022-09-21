@@ -1,0 +1,110 @@
+@page
+@model Frontend.Pages.Registros.AsignacionPaciente
+
+@{
+    ViewData["Title"] = "Asignacion Paciente";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Asignacion Paciente</title>
+    <link rel="stylesheet" href="css/Formularios.css">
+    <style>
+        section::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>                
+</head>
+<body>
+<div>
+    <h3 class="display-5">Reporte de Diagnostico</h3>
+    <table class="table">
+        <tr>
+            <th>Id:</th><td>@Model.historia.Id</td>
+        </tr>
+        <tr>
+            <th>Paciente:</th><td>@Model.nino.Nombre @Model.nino.Apellido</td>
+        </tr>
+        <tr>
+            <th>Familiar:</th><td>@Model.familiar.Nombre @Model.familiar.Apellido</td>
+        </tr>
+        <tr>
+            <th>Medico:</th><td>@Model.medico.Nombre @Model.medico.Apellido</td>
+        </tr>
+        <form method="post">
+        <tr>
+            <th>Signos Vitales:</th>
+            <td>
+                [@Model.signo.FechaHora]<br>
+                
+                    <label for="fc">Frecuencia Cardiaca: </label>
+                    <input type="text" name="fc" id="fc" value="@Model.signo.FrecCardiada"><br>
+                    <label for="fr">Frecuencia Respiratoria: </label>
+                    <input type="text" name="fr" id="fr" value="@Model.signo.FrecRespiratoria"><br>
+                    <label for="ox">Oximetria: </label>
+                    <input type="text" name="ox" id="ox" value="@Model.signo.Oximetria"><br>
+                    <label for="gl">Glicemias: </label>
+                    <input type="text" name="gl" id="gl" value="@Model.signo.Glicemia"><br>
+                    <label for="te">Temperatura: </label>
+                    <input type="text" name="te" id="te" value="@Model.signo.Temperatura"><br>
+                    <label for="pa">Presion Arterial: </label>
+                    <input type="text" name="pa" id="pa" value="@Model.signo.PresArterial"><br>
+                
+            </td>
+        </tr>
+        <tr>
+            <th>Sugerencias de cuidado:</th><td>[@Model.sugerencia.FechaHora] @Model.sugerencia.Descripcion</td>
+        </tr>
+        <tr>
+            <th>Diagnostico:</th>
+            <td>
+                
+                <textarea id="diag" name="diag" rows="3" style="width: 90%">@Model.historia.Diagnostico</textarea>
+                <input type="submit" value="Guardar">
+                
+            </td>
+        </tr>
+        </form>
+    </table>
+    <a asp-page="./Pacientes">
+        <span class="material-icons">reply</span>
+    </a>
+    @{
+        switch (Model.mensaje)
+        {
+            case 1:
+                <script>
+                        window.alert("Los signos vitales solo pueden ser numeros enteros o con decimales")
+                        </script>
+                Model.mensaje = 0;
+                break;
+
+            case 2:
+                <script>
+                        window.alert("No puede dejar el diagnostico vacio")
+                    </script>
+                Model.mensaje = 0;
+                break;
+
+            case 3:
+                <script>
+                        window.alert("Informacion guardada con exito!")
+                    </script>
+                Model.mensaje = 0;
+                break;
+
+            case 4:
+                <script>
+                        window.alert("El paciente aun NO tiene historia clinica")
+                    </script>
+                Model.mensaje = 0;
+                break;
+        }
+    }
+</div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+@page
+@using Microsoft.EntityFrameworkCore
+@model Frontend.Pages.Registros.AsignacionFamiliar
+
+@{
+    ViewData["Title"] = "Asignacion Familiar";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Asignacion Familiar</title>
+    <link rel="stylesheet" href="css/Formularios.css">
+    <style>
+        section::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h3 class="display-5">Pacientes a Cargo</h3>
+    <table class="table">
+        <tr>
+            <th>Nombre</th>
+            <th>Documento</th>
+            <th>Direccion</th>
+            <th>Opciones</th>
+        </tr>
+        
+        @foreach (var i in Model.ninos)
+        {
+            <tr>
+                <td>@i.Nombre @i.Apellido</td>
+                <td>@i.Documento</td>
+                <td>@i.Direccion</td>
+                <td>
+                    <a asp-page="./AsignacionPaciente" asp-route-id="@i.Id">
+                        <span class="material-icons">
+                            assignment
+                        </span>
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+    <a asp-page="./Familiares">
+        <span class="material-icons">reply</span>
+    </a>
+</div>
+</body>
+</html>

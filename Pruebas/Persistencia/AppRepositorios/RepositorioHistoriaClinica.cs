@@ -30,6 +30,21 @@ namespace HogarGestor.App.Pericistencia
             return _appDbContext.HistoriasClinicas.FirstOrDefault(h => h.Id == idHistoria);
         }
 
+        public HistoriaClinica GetHistoriaNino(int idNino)
+        {
+            return _appDbContext.HistoriasClinicas.FirstOrDefault(h => h.idNino == idNino);
+        }
+
+        public IEnumerable<HistoriaClinica> GetHistoriaFamiliar(int idFamiliar)
+        {
+            return _appDbContext.HistoriasClinicas.Where(h => h.idFamiliar == idFamiliar).ToList();
+        }
+
+        public IEnumerable<HistoriaClinica> GetHistoriaMedico(int idMedico)
+        {
+            return _appDbContext.HistoriasClinicas.Where(h => h.idMedico == idMedico).ToList();
+        }
+
         public HistoriaClinica UpdateHistoria(HistoriaClinica historiaClinica)
         {
             var historiaEncontrada = _appDbContext.HistoriasClinicas.FirstOrDefault(h => h.Id == historiaClinica.Id);

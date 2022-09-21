@@ -11,10 +11,14 @@ namespace Frontend.Pages.Registros
         private readonly IRepositorioMedicos _medico = new RepositorioMedicos(new AppDbContext());
         private readonly IRepositorioFamiliares _familiar = new RepositorioFamiliares(new AppDbContext());
         private readonly IRepositorioHistoriaClinica _historia = new RepositorioHistoriaClinica(new AppDbContext());
+
+        private readonly IRepositorioSugerenciasCuidado _sugerencia =
+            new RepositorioSugerenciasCuidado(new AppDbContext());
         public Nino nino { get; set; }
         public Medico medico { get; set; }
         public Familiar familiar { get; set; }
         public HistoriaClinica historia { get; set; }
+        public SugerenciasCuidado sugerencia { get; set; }
         public IActionResult OnGet(int id, string tipo)
         {
             
@@ -49,6 +53,7 @@ namespace Frontend.Pages.Registros
                     nino = _nino.GetPersonaById(historia.idNino);
                     familiar = _familiar.GetFamiliar(historia.idFamiliar);
                     medico = _medico.GetPersona(historia.idMedico);
+                    sugerencia = _sugerencia.GetSugerencia(historia.idSugerenciasCuidado);
                     if (historia==null)
                     {
                         return RedirectToPage("../Error");
@@ -108,6 +113,8 @@ namespace Frontend.Pages.Registros
                 case "asignacion":
                     if (Request.Form["Si, Borrar Registro"]=="Si, Borrar Registro")
                     {
+                        var temp = _historia.GetHistoria(id);
+                        _sugerencia.DeleteSugerencia(temp.idSugerenciasCuidado);
                         _historia.DeleteHistoria(id);
                         return RedirectToPage("./Asignacion");
                     }
@@ -115,6 +122,7 @@ namespace Frontend.Pages.Registros
                     nino = _nino.GetPersonaById(historia.idNino);
                     familiar = _familiar.GetFamiliar(historia.idFamiliar);
                     medico = _medico.GetPersona(historia.idMedico);
+                    sugerencia = _sugerencia.GetSugerencia(historia.idSugerenciasCuidado);
                     if (historia==null)
                     {
                         return RedirectToPage("../Error");

@@ -12,6 +12,7 @@ namespace Frontend.Pages.Registros
         private IRepositorioMedicos _medicos = new RepositorioMedicos(new AppDbContext());
         private IRepositorioNino _ninos = new RepositorioNino(new AppDbContext());
         private IRepositorioHistoriaClinica _historias = new RepositorioHistoriaClinica(new AppDbContext());
+        private IRepositorioSugerenciasCuidado _sugerencia = new RepositorioSugerenciasCuidado(new AppDbContext());
         public IEnumerable<Familiar> familliares { get; set; }
         public IEnumerable<Medico> medicos { get; set; }
         public IEnumerable<Nino> ninos { get; set; }
@@ -41,12 +42,20 @@ namespace Frontend.Pages.Registros
                 history.idFamiliar = int.Parse(Request.Form["familiar"]);
                 history.idMedico = int.Parse(Request.Form["medico"]);
                 history.Diagnostico = Request.Form["diagnostico"];
+
                 if (history.idNino==0||history.idFamiliar==0||history.idMedico==0)
                 {
                     mensaje = 1;
                 }
                 else
                 {
+                    var sug = new SugerenciasCuidado()
+                    {
+                        Descripcion = "Sin Sugerencias",
+                        FechaHora = DateTime.Now
+                    };
+                    sug = _sugerencia.AddSugerencia(sug);
+                    history.idSugerenciasCuidado = sug.Id;
                     _historias.AddHistoria(history);
                     mensaje = 2;
                 }

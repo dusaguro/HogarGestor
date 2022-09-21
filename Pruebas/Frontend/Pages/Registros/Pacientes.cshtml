@@ -122,6 +122,12 @@
                                 delete
                             </span>
                         </a>
+                        <a asp-page="./AsignacionPaciente" asp-route-id="@n.Id">
+                            <span class="material-icons">
+                                assignment
+                            </span>
+                        </a>
+                        
                     </td>
                 </tr>
             }
@@ -185,9 +191,15 @@
                 </a>
                 <a asp-page="./Borrar" asp-route-id="@Model.ninobuscado.Documento" asp-route-tipo="nino">
                     <span class="material-icons">
-                        delete
+                            delete
                     </span>
                 </a>
+                <a asp-page="./AsignacionPaciente" asp-route-id="@Model.ninobuscado.Id">
+                    <span class="material-icons">
+                            assignment
+                    </span>
+                </a>
+                    
             </td>
                 </tr>
         </table>

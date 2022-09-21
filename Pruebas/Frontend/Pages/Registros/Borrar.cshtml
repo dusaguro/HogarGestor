@@ -59,7 +59,7 @@
                     <th>Diagnostico:</th><td>@Model.historia.Diagnostico</td>
                 </tr>
                 <tr>
-                    <th>Sugerencias:</th><td>@Model.historia.idSugerenciasCuidado</td>
+                    <th>Sugerencias:</th><td>[@Model.sugerencia.FechaHora] @Model.sugerencia.Descripcion</td>
                 </tr>
             </table>
             <a asp-page="./Asignacion">

@@ -8,6 +8,9 @@ namespace HogarGestor.App.Pericistencia
         IEnumerable<HistoriaClinica> GetAllHistorias();
         HistoriaClinica AddHistoria(HistoriaClinica historiaClinica);
         HistoriaClinica GetHistoria(int idHistoria);
+        HistoriaClinica GetHistoriaNino(int idNino);
+        IEnumerable<HistoriaClinica> GetHistoriaFamiliar(int idFamiliar);
+        IEnumerable<HistoriaClinica> GetHistoriaMedico(int idMedico);
         HistoriaClinica UpdateHistoria(HistoriaClinica historiaClinica);
         void DeleteHistoria(int idHistoria);
     }

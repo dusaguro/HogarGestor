@@ -12,6 +12,7 @@ namespace Frontend.Pages.Registros
     public class Pacientes : PageModel
     {
         private IRepositorioNino _nino = new RepositorioNino(new AppDbContext());
+        private IRepositorioSignosVitales _signo = new RepositorioSignosVitales(new AppDbContext());
         public IEnumerable<Nino> ninos { get; set; }
         public string fechahoy;
         public int select;
@@ -43,12 +44,25 @@ namespace Frontend.Pages.Registros
                         paciente.Longitud = float.Parse(Request.Form["longitude"]);
                         paciente.Ciudad = Request.Form["city"];
                         paciente.Nacimiento = DateTime.Parse(Request.Form["birthday"]);
+                        
                         if (paciente.Nombre.Equals("")||paciente.Apellido.Equals("")||paciente.Documento.Equals("")||paciente.Telefono.Equals("")||paciente.Direccion.Equals("")||paciente.Ciudad.Equals(""))
                         {
                             mensaje = 2;
                         }
                         else
                         {
+                            var z = new SignosVitales()
+                            {
+                                FechaHora = DateTime.Now,
+                                FrecCardiada = 0,
+                                FrecRespiratoria = 0,
+                                Glicemia = 0,
+                                Oximetria = 0,
+                                PresArterial = 0,
+                                Temperatura = 0
+                            };
+                            z = _signo.AddSignos(z);
+                            paciente.idSignosVitales = z.Id;
                             _nino.AddPersona(paciente);
                             mensaje = 3;
                         }

@@ -1,3 +1,4 @@
+using System;
 using HogarGestor.App.Dominio;
 using HogarGestor.App.Pericistencia;
 using Microsoft.AspNetCore.Mvc;
@@ -11,10 +12,15 @@ namespace Frontend.Pages.Registros
         private readonly IRepositorioFamiliares _familiar = new RepositorioFamiliares(new AppDbContext());
         private readonly IRepositorioMedicos _medico = new RepositorioMedicos(new AppDbContext());
         private readonly IRepositorioHistoriaClinica _historia = new RepositorioHistoriaClinica(new AppDbContext());
+
+        private readonly IRepositorioSugerenciasCuidado _sugerencia =
+            new RepositorioSugerenciasCuidado(new AppDbContext());
         public Nino nino { get; set; }
         public Familiar familiar { get; set; }
         public Medico medico { get; set; }
         public HistoriaClinica historia { get; set; }
+        public SugerenciasCuidado sugerencia { get; set; }
+        
         public IActionResult OnGet(int id, string tipo)
         {
             switch (tipo)
@@ -51,6 +57,14 @@ namespace Frontend.Pages.Registros
                     if (historia==null)
                     {
                         return RedirectToPage("../Error");
+                    }
+                    if (sugerencia==null)
+                    {
+                        sugerencia = new SugerenciasCuidado()
+                        {
+                            Descripcion = "Sin Sugerencias",
+                            FechaHora = new DateTime()
+                        };
                     }
                     return Page();
                 

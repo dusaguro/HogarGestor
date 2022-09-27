@@ -41,7 +41,10 @@ namespace Frontend
             }
 
             app.UseHttpsRedirection();
+            
             app.UseStaticFiles();
+
+            app.UseAuthentication();
 
             app.UseRouting();
 
